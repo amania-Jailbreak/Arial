@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+    arial:
+        build: .
+        container_name: arial-download-manager
+        ports:
+            - "5000:5000"
+        volumes:
+            # ダウンロードフォルダをホスト側にマウント
+            - ./downloads:/app/downloads
+            # 設定ファイルをホスト側にマウント（オプション）
+            - ./.env:/app/.env:ro
+        environment:
+            - FLASK_ENV=production
+            - DOWNLOAD_DIR=/app/downloads
+        restart: unless-stopped
+        networks:
+            - arial-network
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:5000/api/config"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+
+    # aria2cサーバー（オプション）
+    aria2:
+        image: p3terx/aria2-pro:latest
+        container_name: arial-aria2
+        ports:
+            - "6800:6800"
+        volumes:
+            - ./downloads:/downloads
+            - ./aria2-config:/config
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - UMASK_SET=022
+            - RPC_SECRET=arial2024
+            - RPC_PORT=6800
+            - LISTEN_PORT=6888
+            - DISK_CACHE=64M
+            - IPV6_MODE=false
+            - UPDATE_TRACKERS=true
+            - CUSTOM_TRACKER_URL=
+            - TZ=Asia/Tokyo
+        restart: unless-stopped
+        networks:
+            - arial-network
+        logging:
+            driver: json-file
+            options:
+                max-size: "1m"
+
+networks:
+    arial-network:
+        driver: bridge
+
+volumes:
+    downloads:
+        driver: local

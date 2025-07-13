@@ -254,3 +254,11 @@ aria2.log
 # Config backups
 config.backup
 settings.backup
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.env.docker.local
+
+# Docker volumes
+aria2-config/
