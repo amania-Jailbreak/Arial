@@ -1,0 +1,6 @@
+flask
+flask-cors
+aria2p
+python-dotenv
+requests
+yt-dlp

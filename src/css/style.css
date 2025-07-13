@@ -1,0 +1,501 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1e2328;
+    color: #e2e8f0;
+    min-height: 100vh;
+}
+
+.header {
+    padding: 24px 30px;
+    background: #2a2d32;
+    border-bottom: 1px solid #3a3d42;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header p {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: #4f46e5;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+.add-download-btn {
+    background: #4f46e5;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.add-download-btn:hover {
+    background: #3730a3;
+}
+
+.Downloading {
+    margin: 30px 30px;
+    max-width: 1000px;
+    padding: 0;
+}
+
+.Downloading h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #f7fafc;
+    text-align: left;
+}
+
+.Downloading hr {
+    border: none;
+    height: 1px;
+    background: #3a3d42;
+    margin: 16px 0 24px 0;
+    width: 100%;
+}
+
+.download-content {
+    background: #2a2d32;
+    border: 1px solid #3a3d42;
+    border-radius: 8px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.download-content p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.download-content p:first-child {
+    font-weight: 600;
+    font-size: 16px;
+    color: #f7fafc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.download-content p:nth-child(2) {
+    color: #a0aec0;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    text-align: right;
+}
+
+#download-progress {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #3a3d42;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#download-progress::-webkit-progress-bar {
+    background: #3a3d42;
+    border-radius: 3px;
+}
+
+#download-progress::-webkit-progress-value {
+    background: #4f46e5;
+    border-radius: 3px;
+}
+
+#download-progress::-moz-progress-bar {
+    background: #4f46e5;
+    border-radius: 3px;
+}
+
+.download-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.file-size {
+    color: #a0aec0;
+    font-family: "Courier New", monospace;
+}
+
+.eta {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+.pause-button,
+.cancel-button {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    min-width: 80px;
+}
+
+.pause-button {
+    background: #ff9800;
+    color: #ffffff;
+}
+
+.pause-button:hover {
+    background: #f57c00;
+}
+
+.cancel-button {
+    background: #f44336;
+    color: #ffffff;
+}
+
+.cancel-button:hover {
+    background: #d32f2f;
+}
+
+.Completed {
+    margin: 30px 30px;
+    max-width: 1000px;
+    padding: 0;
+}
+
+.Completed h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #f7fafc;
+    text-align: left;
+}
+
+.Completed hr {
+    border: none;
+    height: 1px;
+    background: #3a3d42;
+    margin: 16px 0 24px 0;
+    width: 100%;
+}
+
+.completed-content {
+    background: #2a2d32;
+    border: 1px solid #3a3d42;
+    border-radius: 8px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.completed-content p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.completed-content p:first-child {
+    font-weight: 600;
+    font-size: 16px;
+    color: #f7fafc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.completed-content p:nth-child(2) {
+    color: #10b981;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.completed-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.completed-info .file-size {
+    color: #a0aec0;
+    font-family: "Courier New", monospace;
+}
+
+.completion-time {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.completed-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+.open-button,
+.delete-button {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    min-width: 80px;
+}
+
+.open-button {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.open-button:hover {
+    background: #059669;
+}
+
+.delete-button {
+    background: #6b7280;
+    color: #ffffff;
+}
+
+.delete-button:hover {
+    background: #4b5563;
+}
+
+.config-info {
+    background: #2a2d32;
+    margin: 20px 30px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #3a3d42;
+}
+
+.download-dir-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.config-label {
+    font-weight: 600;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+#download-dir-path {
+    font-family: "Courier New", monospace;
+    background: #1e2328;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #3a3d42;
+    color: #e2e8f0;
+    font-size: 13px;
+    word-break: break-all;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .header p {
+        font-size: 22px;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+
+    .add-download-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .Downloading {
+        margin: 20px 20px;
+        padding: 0;
+    }
+
+    .Downloading h1 {
+        font-size: 20px;
+    }
+
+    .Completed {
+        margin: 20px 20px;
+        padding: 0;
+    }
+
+    .Completed h1 {
+        font-size: 20px;
+    }
+
+    .download-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
+        text-align: left;
+        border-radius: 8px;
+    }
+
+    .completed-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
+        text-align: left;
+        border-radius: 8px;
+    }
+
+    .download-content p:first-child {
+        font-size: 16px;
+    }
+
+    .download-content p:nth-child(2) {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .completed-content p:first-child {
+        font-size: 16px;
+    }
+
+    .completed-content p:nth-child(2) {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .download-info {
+        order: 4;
+    }
+
+    .download-buttons {
+        justify-content: flex-start;
+        gap: 8px;
+        order: 5;
+    }
+
+    .pause-button,
+    .cancel-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+
+    #download-progress {
+        width: 100%;
+        max-width: none;
+        height: 8px;
+    }
+
+    .completed-info {
+        order: 3;
+    }
+
+    .completed-buttons {
+        justify-content: flex-start;
+        gap: 8px;
+        order: 4;
+    }
+
+    .open-button,
+    .delete-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 16px 20px;
+        gap: 12px;
+    }
+
+    .header p {
+        font-size: 20px;
+    }
+
+    .add-download-btn {
+        padding: 16px;
+        font-size: 16px;
+    }
+
+    .Downloading {
+        margin: 16px 20px;
+        padding: 0;
+    }
+
+    .Downloading h1 {
+        font-size: 18px;
+    }
+
+    .Completed {
+        margin: 16px 20px;
+        padding: 0;
+    }
+
+    .Completed h1 {
+        font-size: 18px;
+    }
+
+    .download-content {
+        padding: 16px;
+        border-radius: 8px;
+        gap: 12px;
+    }
+
+    .completed-content {
+        padding: 16px;
+        border-radius: 8px;
+        gap: 12px;
+    }
+
+    .download-buttons {
+        flex-direction: row;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .pause-button,
+    .cancel-button {
+        flex: 1;
+        padding: 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+
+    .completed-buttons {
+        flex-direction: row;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .open-button,
+    .delete-button {
+        flex: 1;
+        padding: 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
