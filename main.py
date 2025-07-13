@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, render_template, send_file
-from flask_socketio import SocketIO, emit
 import flask_cors
 import json
 import subprocess
