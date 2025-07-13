@@ -1,0 +1,50 @@
+# Arial プロジェクト Git コミット テンプレート
+
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+
+# Type は以下から選択:
+# feat: 新機能
+# fix: バグ修正  
+# docs: ドキュメント
+# style: コードスタイル修正
+# refactor: リファクタリング
+# perf: パフォーマンス改善
+# test: テスト追加・修正
+# chore: ビルド・設定変更
+# ci: CI/CD 関連
+
+# Scope は以下から選択 (オプション):
+# core: コアシステム
+# plugin: プラグインシステム
+# ui: ユーザーインターフェース
+# api: REST API
+# docker: Docker関連
+# config: 設定関連
+
+# Subject:
+# - 50文字以内で簡潔に
+# - 命令形で記述
+# - 最初は大文字、末尾にピリオドなし
+
+# Body:
+# - 変更内容の詳細説明
+# - なぜこの変更が必要かを説明
+# - 72文字で改行
+
+# Footer:
+# - 破壊的変更: BREAKING CHANGE: <description>
+# - Issue参照: Closes #123, Fixes #456
+# - Co-authored-by: Name <email@example.com>
+
+# 例:
+# feat(plugin): YouTube字幕ダウンロード機能を追加
+#
+# - yt-dlp writesubtitles オプションを有効化
+# - 字幕言語選択UIを実装  
+# - 自動字幕・手動字幕の選択機能追加
+#
+# Closes #123

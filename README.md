@@ -315,6 +315,59 @@ A: 依存関係がインストールされているか確認してください�
 -   [yt-dlp](https://github.com/yt-dlp/yt-dlp) - YouTube ダウンローダー
 -   [Flask](https://flask.palletsprojects.com/) - Python ウェブフレームワーク
 
+## Git ワークフロー
+
+### ブランチ戦略
+
+```bash
+# 新機能開発
+git checkout -b feature/add-torrent-support
+
+# バグ修正
+git checkout -b fix/youtube-download-error
+
+# ドキュメント更新
+git checkout -b docs/update-api-reference
+```
+
+### コミットメッセージ規約
+
+```
+<type>(<scope>): <subject>
+
+例:
+feat(plugin): BitTorrentダウンロード対応プラグインを追加
+fix(ui): プログレスバーの表示エラーを修正
+docs: Docker使用方法をREADMEに追加
+```
+
+#### Type
+
+-   `feat`: 新機能
+-   `fix`: バグ修正
+-   `docs`: ドキュメント
+-   `style`: コードスタイル
+-   `refactor`: リファクタリング
+-   `test`: テスト関連
+-   `chore`: その他
+
+#### Scope (オプション)
+
+-   `core`: コアシステム
+-   `plugin`: プラグインシステム
+-   `ui`: ユーザーインターフェース
+-   `api`: REST API
+-   `docker`: Docker 関連
+
+### 開発ワークフロー
+
+1. **Issue 作成**: 機能要求やバグ報告
+2. **ブランチ作成**: Issue 番号を含む名前
+3. **開発**: 小さなコミットで段階的に
+4. **テスト**: 変更内容の動作確認
+5. **Pull Request**: レビューを依頼
+6. **マージ**: レビュー完了後に main ブランチへ
+
 ---
 
 作成者: amania

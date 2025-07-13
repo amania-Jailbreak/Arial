@@ -1,0 +1,109 @@
+# Arial プロジェクト - Git設定ファイル
+
+[user]
+    # プロジェクト固有のユーザー設定
+    name = amania
+    email = amania@example.com
+
+[core]
+    # コミットメッセージテンプレート
+    template = .gitmessage
+    
+    # 改行コード設定（Windows環境対応）
+    autocrlf = true
+    
+    # ファイルモード変更を無視
+    filemode = false
+
+[commit]
+    # コミット時のGPG署名
+    gpgsign = false
+    
+    # コミットメッセージエディタ
+    template = .gitmessage
+
+[pull]
+    # プルリクエスト時のリベース設定
+    rebase = true
+
+[push]
+    # プッシュ時のデフォルト動作
+    default = simple
+    
+    # リモートブランチが存在しない場合の自動作成
+    autoSetupRemote = true
+
+[branch]
+    # ブランチのマージ時の動作
+    autosetupmerge = always
+    autosetuprebase = always
+
+[merge]
+    # マージコンフリクト解決ツール
+    tool = vscode
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+
+[diff]
+    # 差分表示ツール
+    tool = vscode
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[alias]
+    # よく使うコマンドのエイリアス
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    ca = commit -a
+    cm = commit -m
+    cam = commit -am
+    
+    # ログ表示
+    lg = log --oneline --graph --decorate --all
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    
+    # 差分表示
+    df = diff
+    dc = diff --cached
+    
+    # リモート操作
+    pu = push
+    pl = pull
+    
+    # ブランチ操作
+    cob = checkout -b
+    
+    # 便利なエイリアス
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    visual = !gitk
+    
+    # Arial プロジェクト固有
+    feature = checkout -b feature/
+    hotfix = checkout -b hotfix/
+    fix = checkout -b fix/
+    docs = checkout -b docs/
+
+[color]
+    # カラー出力を有効化
+    ui = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+
+[help]
+    # ヘルプの自動表示時間
+    autocorrect = 1
+
+# Arial プロジェクト固有の設定
+[includeIf "gitdir:~/Projects/Arial/"]
+    path = ~/Projects/Arial/.gitconfig-arial
+
+# Windows固有の設定
+[core]
+    longpaths = true

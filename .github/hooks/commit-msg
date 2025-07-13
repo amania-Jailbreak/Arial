@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Arial プロジェクト - Git フック: commit-msg
+# コミットメッセージの形式をチェック
+
+commit_regex='^(feat|fix|docs|style|refactor|perf|test|chore|ci)(\(.+\))?: .{1,50}'
+
+error_msg="コミットメッセージが規約に従っていません。
+
+正しい形式:
+<type>(<scope>): <subject>
+
+例:
+feat(plugin): YouTube字幕ダウンロード機能を追加
+fix(ui): プログレスバーが正しく表示されない問題を修正
+docs: READMEにDocker使用方法を追加
+
+Type: feat, fix, docs, style, refactor, perf, test, chore, ci
+Scope: core, plugin, ui, api, docker, config (オプション)
+Subject: 50文字以内、命令形"
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "$error_msg" >&2
+    exit 1
+fi
