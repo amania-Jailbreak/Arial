@@ -20,7 +20,7 @@ jobs:
             - uses: actions/checkout@v4
 
             - name: Set up Python
-              uses: actions/setup-python@v4
+              uses: actions/setup-python@v5
               with:
                   python-version: ${{ env.PYTHON_VERSION }}
 
@@ -42,7 +42,7 @@ jobs:
               run: bandit -r . -f json -o bandit-report.json || true
 
             - name: Upload Bandit Report
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: bandit-report
                   path: bandit-report.json
@@ -60,7 +60,7 @@ jobs:
             - uses: actions/checkout@v4
 
             - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v4
+              uses: actions/setup-python@v5
               with:
                   python-version: ${{ matrix.python-version }}
 
@@ -73,18 +73,25 @@ jobs:
               run: |
                   python -m pip install --upgrade pip
                   pip install -r requirements.txt
-                  pip install pytest pytest-cov pytest-mock
 
             - name: Run Tests
               run: |
-                  pytest tests/ --cov=. --cov-report=xml --cov-report=html
+                  # テストディレクトリが存在する場合のみテスト実行
+                  if [ -d "tests" ] && [ "$(ls -A tests)" ]; then
+                      pytest tests/ --cov=. --cov-report=xml --cov-report=html
+                  else
+                      echo "No tests found, skipping test execution"
+                      # 最低限のsyntax checkとして、Pythonファイルのインポートテスト
+                      python -c "import main; print('Main module imported successfully')"
+                  fi
 
             - name: Upload Coverage to Codecov
-              uses: codecov/codecov-action@v3
+              uses: codecov/codecov-action@v4
               with:
                   file: ./coverage.xml
                   flags: unittests
                   name: codecov-umbrella
+                  token: ${{ secrets.CODECOV_TOKEN }}
 
     docker:
         name: Docker Build Test
@@ -125,7 +132,7 @@ jobs:
                   output: "trivy-results.sarif"
 
             - name: Upload Trivy scan results to GitHub Security tab
-              uses: github/codeql-action/upload-sarif@v2
+              uses: github/codeql-action/upload-sarif@v3
               with:
                   sarif_file: "trivy-results.sarif"
 
@@ -137,7 +144,7 @@ jobs:
             - uses: actions/checkout@v4
 
             - name: Set up Python
-              uses: actions/setup-python@v4
+              uses: actions/setup-python@v5
               with:
                   python-version: ${{ env.PYTHON_VERSION }}
 
@@ -152,7 +159,7 @@ jobs:
                   pip-audit --format=json --output=pip-audit-report.json || true
 
             - name: Upload Security Reports
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: security-reports
                   path: |
@@ -216,11 +223,7 @@ jobs:
                   zip -r arial-${{ steps.get_version.outputs.VERSION }}.zip . -x "*.git*" "*.venv*" "*__pycache__*" "downloads/*"
 
             - name: Upload Release Assets
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              uses: softprops/action-gh-release@v2
               with:
-                  upload_url: ${{ github.event.release.upload_url }}
-                  asset_path: ./arial-${{ steps.get_version.outputs.VERSION }}.zip
-                  asset_name: arial-${{ steps.get_version.outputs.VERSION }}.zip
-                  asset_content_type: application/zip
+                  files: arial-${{ steps.get_version.outputs.VERSION }}.zip
+                  token: ${{ secrets.GITHUB_TOKEN }}

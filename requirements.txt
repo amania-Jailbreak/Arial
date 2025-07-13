@@ -4,3 +4,13 @@ aria2p
 python-dotenv
 requests
 yt-dlp
+
+# テスト関連
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+
+# 開発・デバッグ用
+black>=23.0.0
+flake8>=6.0.0
+isort>=5.12.0
