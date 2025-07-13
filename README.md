@@ -2,7 +2,7 @@
 
 Arial は、aria2 をベースとした高機能なダウンロードマネージャーです。YouTube、ニコニコ動画、Twitter などの動画サイトにも対応したプラグインシステムを搭載しています。
 
-![alt text](by-nc-sa.png)
+<img src="by-nc-sa.png" alt="alt text" width="80" />
 
 ## 特徴
 
